@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 
 def index(request):
-    API_KEY = open('API_KEY', 'r').read()
+    API_KEY = open('C:/source/weather-project/weather_project/API_KEY', 'r').read()
     current_weather_url = 'https://api.openweathermap.org/data/2.5/weather?q={}&appid={}'
     forecast_weather_url = 'https://api.openweathermap.org/data/2.5/onecall?lat={}&lon={}&exclude=current,minutely,hourly,alerts&appid={}'
 
