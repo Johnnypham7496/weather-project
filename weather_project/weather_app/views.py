@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 
 def index(request):
-    API_KEY = open('C:/source/weather-project/weather_project/API_KEY', 'r').read()
+    api_key = open('API_KEY', 'r').read()
     current_weather_url = 'https://api.openweathermap.org/data/2.5/weather?q={}&appid={}'
     forecast_weather_url = 'https://api.openweathermap.org/data/2.5/onecall?lat={}&lon={}&exclude=current,minutely,hourly,alerts&appid={}'
 
@@ -15,11 +15,11 @@ def index(request):
         city2 = request.POST.get('city2', None)
 
         weather_data1, daily_forecasts1 = fetch_weather_and_forecast(
-            city1, API_KEY, current_weather_url, forecast_weather_url)
+            city1, api_key, current_weather_url, forecast_weather_url)
 
         if city2:
             weather_data2, daily_forecasts2 = fetch_weather_and_forecast(
-                city2, API_KEY, current_weather_url, forecast_weather_url)
+                city2, api_key, current_weather_url, forecast_weather_url)
         else:
             weather_data2, daily_forecasts2 == None, None
 
