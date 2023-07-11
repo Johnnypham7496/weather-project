@@ -46,7 +46,7 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_weat
 
     weather_data = {
         "city": city,
-        "temperature": round(response['main']['temp'], 2),
+        "temperature": round(response['main']['temp'] - 273.15, 2),
         "description": response['weather'][0]['description'],
         "icon": response['weather'][0]['icon'],
     }
@@ -58,7 +58,7 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_weat
             "min_temp": round(daily_data['temp']['min'] - 273.15, 2),
             "max_temp": round(daily_data['temp']['max'] - 273.15, 2),
             "description": daily_data['weather'][0]['description'],
-            "icon": daily_data['weather'][0]['icon'],
+            "icon": daily_data['weather'][0]['icon']
         })
 
     return weather_data, daily_forecasts
