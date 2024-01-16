@@ -37,11 +37,11 @@ def index(request):
 
 def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_weather_url):
     response = requests.get(
-        current_weather_url.format(city, api_key)).json()
+        current_weather_url.format(city, api_key), timeout=60).json(timeout=60)
     lat, lon = response['coord']['lat'], response['coord']['lon']
 
     forecast_response = requests.get(
-        forecast_weather_url.format(lat, lon, api_key)).json()
+        forecast_weather_url.format(lat, lon, api_key), timeout=60).json(timeout=60)
     
 
     weather_data = {
