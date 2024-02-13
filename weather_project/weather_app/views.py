@@ -1,6 +1,6 @@
-import requests
 import datetime
 from django.shortcuts import render
+from security import safe_requests
 
 # Create your views here.
 
@@ -36,12 +36,10 @@ def index(request):
 
 
 def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_weather_url):
-    response = requests.get(
-        current_weather_url.format(city, api_key)).json()
+    response = safe_requests.get(current_weather_url.format(city, api_key)).json()
     lat, lon = response['coord']['lat'], response['coord']['lon']
 
-    forecast_response = requests.get(
-        forecast_weather_url.format(lat, lon, api_key)).json()
+    forecast_response = safe_requests.get(forecast_weather_url.format(lat, lon, api_key)).json()
     
 
     weather_data = {
